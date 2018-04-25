@@ -23,12 +23,18 @@ Calentador::Calentador()
 
 void Calentador::calentar()
 {
-    temperatura += 5;
+    if(temperatura + incremento <= 30)
+    {
+        temperatura += incremento;
+    }
 }
 
 void Calentador::enfriar()
 {
-    temperatura -=5;
+    if(temperatura - incremento >= -10)
+    {
+        temperatura -=incremento;
+    }
 }
 
 void Calentador::imprimeTempertura()//se debe eindicar a que classe pertenece el metodo, se hace con (clase::nombre del metod)
@@ -46,8 +52,11 @@ int main()
     Calentador c1;
     Calentador c2;
     
-    c1.calentar();
-    c1.imprimeTempertura();
-    c2.enfriar();
-    c2.imprimeTempertura();
+    for(int i = 0; i < 10; i++)
+    {
+        c1.calentar();
+        c1.imprimeTempertura();
+        c2.enfriar();
+        c2.imprimeTempertura();
+    }
 }
