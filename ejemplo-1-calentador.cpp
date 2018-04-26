@@ -5,9 +5,11 @@ class Calentador
     private: 
     int temperatura;
     int incremento;
+    int min;
+    int max;
     
     public:
-    Calentador();
+    Calentador(int min, int max, int temperatura = 0);//varaibles
     void calentar();
     void enfriar();
     void imprimeCentigrados();
@@ -16,16 +18,31 @@ class Calentador
     
 };//punto y coma obligatorio, es aprte dela sintaxis
 
-Calentador::Calentador()
+Calentador::Calentador(int min, int max, int temperatura)//parametros
 {
-    temperatura = 15;
-    incremento = 3;
+    if(temperatura >= min && temperatura <= max){
+        this->temperatura = temperatura;
+    }else{
+        this->temperatura = min;
+    }
+    incremento = 3
+    if(min < max){
+        this->min = min;
+        this->max = max;
+    }
+    else{
+        //std::cout << "Error en el rango min-max" << std::endl;
+        std::exit(EXIT_FAILURE);
+        //throw "Error en el rango min-max";
+        //this->min = max;
+        //this->max = min;
+    }
 }
 
 
 void Calentador::calentar()
 {
-    if(temperatura + incremento <= 30)
+    if(temperatura + incremento <= this->max)
     {
         temperatura += incremento;
     }
@@ -33,7 +50,7 @@ void Calentador::calentar()
 
 void Calentador::enfriar()
 {
-    if(temperatura - incremento >= -10)
+    if(temperatura - incremento >= this->min)
     {
         temperatura -=incremento;
     }
@@ -59,16 +76,23 @@ void Calentador::imprimeFarenheit() const
 
 int main()
 {
-    Calentador c1;
-    Calentador c2;
+    //try {
+        Calentador c1{-10, 10};
+        Calentador c2{0, 30, 10};
     
-    for(int i = 0; i < 10; i++)
-    {
-        c1.calentar();
-        c1.imprimeCentigrados();
-        c1.imprimeFarenheit();
-        c2.enfriar();
-        c2.imprimeCentigrados();
-        c2.imprimeFarenheit();
-    }
+        for(int i = 0; i < 10; i++)
+        {
+            c1.calentar();
+            c1.imprimeCentigrados();
+            c1.imprimeFarenheit();
+            c2.enfriar();
+            c2.imprimeCentigrados();
+            c2.imprimeFarenheit();
+        }
+        
+    //}
+    /*catch(const std::runtime_error &e){
+        
+        }*/
+    
 }
