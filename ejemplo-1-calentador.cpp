@@ -16,6 +16,8 @@ class Calentador
     void imprimeFarenheit() const;
     int accedeTemperatura() const;
     
+    bool operator==(Calentador otro);//sobrecarga del metodo miembro de la clase
+    
 };//punto y coma obligatorio, es aprte dela sintaxis
 
 Calentador::Calentador(int min, int max, int temperatura)//parametros
@@ -25,7 +27,7 @@ Calentador::Calentador(int min, int max, int temperatura)//parametros
     }else{
         this->temperatura = min;
     }
-    incremento = 3
+    incremento = 3;
     if(min < max){
         this->min = min;
         this->max = max;
@@ -74,21 +76,34 @@ void Calentador::imprimeFarenheit() const
     << "°F" << std::endl;
 }
 
+bool Calentador::operator==(Calentador otro)
+{
+    if(this->temperatura == otro.temperatura)
+        return true;
+    else
+        return false;
+}
+
 int main()
 {
     //try {
         Calentador c1{-10, 10};
-        Calentador c2{0, 30, 10};
-    
-        for(int i = 0; i < 10; i++)
-        {
-            c1.calentar();
+        Calentador c2{30, 10, 0};
+        
+        if(c1 == c2){
+            std::cout << "iguales\n";
+        }
+        else{
+            std::cout << " diferentes \n";
+        }
+
+
             c1.imprimeCentigrados();
             c1.imprimeFarenheit();
             c2.enfriar();
             c2.imprimeCentigrados();
             c2.imprimeFarenheit();
-        }
+        
         
     //}
     /*catch(const std::runtime_error &e){
