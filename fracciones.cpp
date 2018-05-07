@@ -14,6 +14,9 @@ class Fraccion
     Fraccion operator *(Fraccion otraFraccion);
     Fraccion operator /(Fraccion otraFraccion);
     
+    friend void operator <<(std::ostream &salida, Fraccion f); //funcion amiga para poder acceder a ala variables privadas de la clase.
+    friend void operator >>(std::istream &entrada, Fraccion &f);
+    
 };
 
 Fraccion::Fraccion(int num, int den)
@@ -51,6 +54,16 @@ Fraccion Fraccion::operator/(Fraccion otraFraccion)
     return fr;
 }
 
+void operator<<(std::ostream &salida, Fraccion f)//el aperson es para indicar que no se crea una copia del tipo de dato, y pasa por referencia
+{
+    salida << f.num << "/" << f.den << "\n";
+}
+
+void operator>>(std::istream &entrada, Fraccion &f)
+{
+    entrada >> f.num >> f.den;
+}
+
 int main()
 {
     Fraccion f1{3,8};
@@ -63,4 +76,7 @@ int main()
     f3.imprimeFraccion();
     f3 = f1 / f2;
     f3.imprimeFraccion();
+    
+    std::cin >> f3;
+    std::cout << f3;
 }
