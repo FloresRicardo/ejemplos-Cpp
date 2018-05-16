@@ -31,13 +31,23 @@ Pila<Tipo>::~Pila()
 template <typename Tipo>
 void Pila<Tipo>::push(Tipo dato)
 {
-    
+    if(tope < max)
+    {
+        arreglo[tope] = dato;
+        tope +=1;
+    }
 }
 
 template <typename Tipo>
 Tipo Pila<Tipo>::pop()
 {
-    
+    if(tope > 0)
+    {
+         int i = tope - 1;
+        tope -=1;
+        return arreglo[i];
+        
+    }
 }
 
 int main()
