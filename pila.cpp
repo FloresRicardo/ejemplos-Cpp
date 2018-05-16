@@ -43,9 +43,8 @@ Tipo Pila<Tipo>::pop()
 {
     if(tope > 0)
     {
-         int i = tope - 1;
         tope -=1;
-        return arreglo[i];
+        return arreglo[tope];
         
     }
 }
