@@ -1,10 +1,16 @@
+#ifndef FIGURA_INCLUIDA
+#define FIGURA_INCLUIDA//se colocan estan banderas para definir si ya se inlcuyo ono un archivo
+
+
 class Figura
 {
-    private:
+    protected:
         float area;
     
     public:
         Figura();
-        void calcularArea();
+        virtual void calcularArea() = 0;
         void imprimirArea();
 };
+
+#endif
